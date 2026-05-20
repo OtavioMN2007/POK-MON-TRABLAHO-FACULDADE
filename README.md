@@ -1,71 +1,132 @@
-# Pokemon Battle
+# BatalhaPokeFireRed
 
 Projeto da disciplina **ALGORITMOS E ESTRUTURAS DE DADOS**.
 
-Professor: **[Nome do Professor]**
+Professor: Dr. Maxwell Gomes Da Silva
 
 Integrantes:
 
-- Otavio Mendes - RA: 5181461
+- Otávio Mendes Nunes - RA: 5178278
+-  - RA:
+-  - RA:
 
 ## Entrega principal
 
-A entrega principal do trabalho está em:
+A entrega principal do trabalho esta em:
 
 ```text
-POKEMON_BATTLE/Batalha definitiva.ALG
-Esse arquivo deve ser aberto no VisuALG 3 e executado com F9.
+Batalha_definitiva.ALG
+```
 
-Estrutura do repositório
+Esse arquivo deve ser aberto no **VisuALG 3** e executado com **F9**.
 
-POKEMON_TRABALHO_FACULDADE/
-|
-|-- README.md
-|
-|-- POKEMON_BATTLE/
-|   |-- Batalha definitiva.ALG
+## Como executar
 
-Como executar a versão oficial
-Abra o VisuALG 3.
+1. Abra o VisuALG 3.
+2. Abra o arquivo `Batalha_definitiva.ALG`.
+3. Pressione F9.
+4. Pressione ENTER na tela de boas-vindas para comecar sua jornada.
 
-Abra o arquivo POKEMON_BATTLE/Batalha definitiva.ALG.
+## Sobre o jogo
 
-Pressione F9 para iniciar a execução.
+O jogo simula um sistema de batalha no estilo **Pokemon FireRed**, rodando inteiramente no terminal do VisuALG. O jogador recebe o **Pikachu** como Pokemon inicial e enfrenta batalhas sequenciais contra Pokemons selvagens.
 
-Siga as instruções textuais na tela para avançar pelos diálogos e menus.
+O programa apresenta:
 
-Fluxo do Jogo e Mecânicas
-O jogo reproduz uma experiência inspirada no clássico Pokémon FireRed, trazendo telas de boas-vindas em arte ASCII e batalhas por turnos.
+- Tela de boas-vindas com arte ASCII do titulo Pokemon.
+- Apresentacao do Professor Carvalho em arte ASCII.
+- Arte ASCII do Pikachu antes da primeira batalha.
+- Arte ASCII dos Pokemons inimigos durante as batalhas.
 
-1. Prólogo e Introdução
-Boas-vindas: O jogo inicia com uma tela de abertura temática.
+## Batalhas
 
-Prof. Carvalho: O famoso cientista introduz o jogador ao mundo dos monstrinhos e entrega o seu Pokémon inicial: Pikachu.
+### Batalha 1 — ZONA SELVAGEM
 
-2. Sistema de Batalha por Turnos
-O núcleo do jogo funciona através de uma estrutura condicional repetitiva (enquanto), alternando ações entre o jogador e uma Inteligência Artificial do inimigo:
+| | Pokemon | HP |
+|---|---|---|
+| Jogador | Pikachu | 25 |
+| Inimigo | Eevee (selvagem) | 20 |
 
-Turno do Jogador: Apresenta um menu de escolha numérica com as seguintes opções:
+Se o Eevee for capturado, ele **evolui automaticamente para Vaporeon** e a batalha 2 e liberada.
 
-1 - CHOQUE DO TROVAO (Ataque Rápido)
-2 - INVESTIDA TROVAO (Ataque Forte)
-3 - USAR POÇÃO (Restaurar 10 HP)
-4 - CAPTURAR (Jogar Pokebola)
+### Batalha 2 — CAMINHO DAS CHAMAS
 
-Inteligência Artificial (Inimigo Inteligente): O oponente (Eevee) age baseado no seu nível de vida atual:
+| | Pokemon | HP |
+|---|---|---|
+| Jogador | Vaporeon | 35 |
+| Inimigo | Charizard (selvagem) | 30 |
 
-Se estiver com vida cheia/normal, ele alterna aleatoriamente entre ataques normais e ferozes (ATAQUE RÁPIDO ou MORDIDA).
+> A Batalha 2 so e acessivel se o jogador capturar o Eevee na Batalha 1.
 
-Se estiver com vida baixa (<= 6 HP), ele entra em modo defensivo e possui uma alta probabilidade (80%) de usar a habilidade de cura DESEJO (WISH) para se recuperar, ou ataca com desespero caso falhe.
+## Controles — Acoes por batalha
 
-3. Sistema de Captura e Evolução
-Captura: O sucesso do arremesso da Pokebola é calculado dinamicamente com base na vida atual do inimigo (quanto menor o HP, mais fácil capturar).
+Durante cada batalha, o jogador escolhe uma acao digitando o numero correspondente e pressionando ENTER:
 
-Evolução por Pedra: Caso o Eevee seja capturado com sucesso, o jogo ativa um evento especial onde o jogador encontra uma Pedra Água. Se decidir usá-la, uma sequência de animação ASCII exibe a evolução do Eevee para Vaporeon, liberando a sequência da jornada.
+```text
+1 - Ataque rapido
+2 - Ataque forte
+3 - Usar POTION (cura 10 de HP)
+4 - Capturar (jogar Pokebola)
+```
 
-Condições de Vitória e Derrota
-Vitória Definitiva: Capturar o Pokémon selvagem e concluir a jornada de evolução com sucesso.
+### Golpes do Pikachu (Batalha 1)
 
-Fim de Jogo (Game Over): Se o HP do Pikachu chegar a zero (hp_jogador <= 0), o jogador é derrotado e o jogo é encerrado.
+```text
+CHOQUE DO TROVAO   Ataque rapido  — causa de 5 a 7 de dano
+INVESTIDA TROVAO   Ataque forte   — causa de 7 a 12 de dano (super efetivo)
+```
 
-Fim de Jornada Prematuro: Derrotar o inimigo (zerar o HP dele) sem realizar a captura impede o progresso da jornada, exigindo que o treinador tente novamente para conseguir capturá-lo.
+### Golpes do Vaporeon (Batalha 2)
+
+```text
+JATO DE AGUA   Ataque rapido  — causa de 3 a 10 de dano (muito eficaz)
+SURF           Ataque forte   — causa de 6 a 15 de dano (golpe devastador)
+```
+
+## Itens
+
+```text
+POTION   Recupera 10 de HP do Pokemon do jogador.
+         Cada batalha comeca com 2 Potions disponiveis.
+         Nao e possivel usar Potion se o HP ja estiver no maximo.
+```
+
+## Captura
+
+Para capturar um Pokemon, escolha a opcao **4 - CAPTURAR** durante a batalha. A chance de captura e calculada com base no HP atual do inimigo: quanto menor o HP, maior a chance de sucesso.
+
+```text
+Gotcha! [Pokemon] foi capturado!   — captura bem-sucedida
+Ah nao! [Pokemon] escapou!         — captura falhou
+```
+
+## Inteligencia artificial dos inimigos
+
+Os Pokemons inimigos possuem comportamento dinamico:
+
+- **Eevee**: quando com HP baixo, pode usar **DESEJO (WISH)** para se curar. Nos outros turnos, alterna entre **ATAQUE RAPIDO** e **MORDIDA (BITE)**.
+- **Charizard**: quando com HP baixo, pode usar **DESCANSO (REST)** para se curar. Nos outros turnos, alterna entre **LANCACHAMAS**, **EXPLOSAO** e ataques normais.
+
+## Resultados possiveis
+
+```text
+[Pokemon] desmaiou...          O jogador perdeu a batalha.
+[Pokemon] desmaiou. Voce venceu!   O inimigo foi derrotado, mas nao capturado.
+Gotcha! [Pokemon] foi capturado!   Vitoria com captura — desbloqueia a proxima batalha.
+```
+
+## Variaveis principais
+
+```text
+nome_jogador    Nome do Pokemon do jogador
+nome_inimigo    Nome do Pokemon inimigo
+hp_jogador      HP atual do jogador
+hp_inimigo      HP atual do inimigo
+hp_max_jogador  HP maximo do jogador (para limitar a cura)
+hp_max_inimigo  HP maximo do inimigo (para limitar a cura)
+pocoes_jogador  Quantidade de Potions restantes
+capturado       Logico — indica se o inimigo foi capturado
+dano            Dano calculado por turno
+tentativa       Valor aleatorio usado no calculo de captura
+acao_inimigo    Valor aleatorio usado na IA do inimigo
+```
