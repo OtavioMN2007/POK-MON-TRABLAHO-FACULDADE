@@ -4,10 +4,15 @@ var
    nome_jogador  : caractere
    hp_inimigo    : inteiro
    hp_jogador    : inteiro
+   hp_max_jogador: inteiro // Guarda a vida mÃ¡xima do Pikachu para a cura nÃ£o estourar
+   hp_max_inimigo: inteiro // Guarda a vida mÃ¡xima do inimigo para a cura nÃ£o estourar
+   pocoes_jogador: inteiro // Contador de poÃ§Ãµes do jogador
    capturado     : logico
    opcao         : inteiro
    dano          : inteiro
    tentativa     : inteiro
+   acao_inimigo  : inteiro // VariÃ¡vel para a inteligÃªncia artificial do inimigo
+   cura          : inteiro // VariÃ¡vel para calcular a cura
 
 inicio
 
@@ -20,23 +25,23 @@ inicio
    escreval("*                                                                    *")
    escreval("*                                                                    *")
    escreval("**********************************************************************")
-  escreval("¦¦¦¦¦¦+   ¦¦¦¦¦¦+  ¦¦+  ¦¦+ ¦¦¦¦¦¦¦+ ¦¦¦+   ¦¦¦+  ¦¦¦¦¦¦+  ¦¦¦+   ¦¦+  ")
-escreval("¦¦+--¦¦+ ¦¦+---¦¦+ ¦¦¦ ¦¦++ ¦¦+----+ ¦¦¦¦+ ¦¦¦¦¦ ¦¦+---¦¦+ ¦¦¦¦+  ¦¦¦    ")
-escreval("¦¦¦¦¦¦++ ¦¦¦   ¦¦¦ ¦¦¦¦¦++  ¦¦¦¦¦+   ¦¦+¦¦¦¦+¦¦¦ ¦¦¦   ¦¦¦ ¦¦+¦¦+ ¦¦¦    ")
-escreval("¦¦+---+  ¦¦¦   ¦¦¦ ¦¦+-¦¦+  ¦¦+--+   ¦¦¦+¦¦++¦¦¦ ¦¦¦   ¦¦¦ ¦¦¦+¦¦+¦¦¦    ")
-escreval("¦¦¦      +¦¦¦¦¦¦++ ¦¦¦  ¦¦+ ¦¦¦¦¦¦¦+ ¦¦¦ +-+ ¦¦¦ +¦¦¦¦¦¦++ ¦¦¦ +¦¦¦¦¦    ")
+  escreval("Â¦Â¦Â¦Â¦Â¦Â¦+   Â¦Â¦Â¦Â¦Â¦Â¦+  Â¦Â¦+  Â¦Â¦+ Â¦Â¦Â¦Â¦Â¦Â¦Â¦+ Â¦Â¦Â¦+   Â¦Â¦Â¦+  Â¦Â¦Â¦Â¦Â¦Â¦+  Â¦Â¦Â¦+   Â¦Â¦+  ")
+escreval("Â¦Â¦+--Â¦Â¦+ Â¦Â¦+---Â¦Â¦+ Â¦Â¦Â¦ Â¦Â¦++ Â¦Â¦+----+ Â¦Â¦Â¦Â¦+ Â¦Â¦Â¦Â¦Â¦ Â¦Â¦+---Â¦Â¦+ Â¦Â¦Â¦Â¦+  Â¦Â¦Â¦    ")
+escreval("Â¦Â¦Â¦Â¦Â¦Â¦++ Â¦Â¦Â¦   Â¦Â¦Â¦ Â¦Â¦Â¦Â¦Â¦++  Â¦Â¦Â¦Â¦Â¦+   Â¦Â¦+Â¦Â¦Â¦Â¦+Â¦Â¦Â¦ Â¦Â¦Â¦   Â¦Â¦Â¦ Â¦Â¦+Â¦Â¦+ Â¦Â¦Â¦    ")
+escreval("Â¦Â¦+---+  Â¦Â¦Â¦   Â¦Â¦Â¦ Â¦Â¦+-Â¦Â¦+  Â¦Â¦+--+   Â¦Â¦Â¦+Â¦Â¦++Â¦Â¦Â¦ Â¦Â¦Â¦   Â¦Â¦Â¦ Â¦Â¦Â¦+Â¦Â¦+Â¦Â¦Â¦    ")
+escreval("Â¦Â¦Â¦      +Â¦Â¦Â¦Â¦Â¦Â¦++ Â¦Â¦Â¦  Â¦Â¦+ Â¦Â¦Â¦Â¦Â¦Â¦Â¦+ Â¦Â¦Â¦ +-+ Â¦Â¦Â¦ +Â¦Â¦Â¦Â¦Â¦Â¦++ Â¦Â¦Â¦ +Â¦Â¦Â¦Â¦Â¦    ")
 escreval("+-+       +-----+  +-+  +-+ +------+ +-+     +-+  +-----+  +-+  +---+    ")
 escreval("                                                                         ")
-escreval("     ¦¦¦¦¦¦¦+¦¦+ ¦¦¦¦¦¦+  ¦¦¦¦¦¦¦+    ¦¦¦¦¦¦+  ¦¦¦¦¦¦¦+ ¦¦¦¦¦¦+          ")
-escreval("     ¦¦+----+¦¦¦ ¦¦+--¦¦+ ¦¦+----+    ¦¦+--¦¦+ ¦¦+----+ ¦¦+--¦¦+         ")
-escreval("     ¦¦¦¦¦+  ¦¦¦ ¦¦¦¦¦¦++ ¦¦¦¦¦+      ¦¦¦¦¦¦++ ¦¦¦¦¦+   ¦¦¦  ¦¦¦         ")
-escreval("     ¦¦+--+  ¦¦¦ ¦¦+--¦¦+ ¦¦+--+      ¦¦+--¦¦+ ¦¦+--+   ¦¦¦  ¦¦¦         ")
-escreval("     ¦¦¦     ¦¦¦ ¦¦¦  ¦¦¦ ¦¦¦¦¦¦¦+    ¦¦¦  ¦¦¦ ¦¦¦¦¦¦¦+ ¦¦¦¦¦¦++         ")
+escreval("     Â¦Â¦Â¦Â¦Â¦Â¦Â¦+Â¦Â¦+ Â¦Â¦Â¦Â¦Â¦Â¦+  Â¦Â¦Â¦Â¦Â¦Â¦Â¦+    Â¦Â¦Â¦Â¦Â¦Â¦+  Â¦Â¦Â¦Â¦Â¦Â¦Â¦+ Â¦Â¦Â¦Â¦Â¦Â¦+          ")
+escreval("     Â¦Â¦+----+Â¦Â¦Â¦ Â¦Â¦+--Â¦Â¦+ Â¦Â¦+----+    Â¦Â¦+--Â¦Â¦+ Â¦Â¦+----+ Â¦Â¦+--Â¦Â¦+         ")
+escreval("     Â¦Â¦Â¦Â¦Â¦+  Â¦Â¦Â¦ Â¦Â¦Â¦Â¦Â¦Â¦++ Â¦Â¦Â¦Â¦Â¦+      Â¦Â¦Â¦Â¦Â¦Â¦++ Â¦Â¦Â¦Â¦Â¦+   Â¦Â¦Â¦  Â¦Â¦Â¦         ")
+escreval("     Â¦Â¦+--+  Â¦Â¦Â¦ Â¦Â¦+--Â¦Â¦+ Â¦Â¦+--+      Â¦Â¦+--Â¦Â¦+ Â¦Â¦+--+   Â¦Â¦Â¦  Â¦Â¦Â¦         ")
+escreval("     Â¦Â¦Â¦     Â¦Â¦Â¦ Â¦Â¦Â¦  Â¦Â¦Â¦ Â¦Â¦Â¦Â¦Â¦Â¦Â¦+    Â¦Â¦Â¦  Â¦Â¦Â¦ Â¦Â¦Â¦Â¦Â¦Â¦Â¦+ Â¦Â¦Â¦Â¦Â¦Â¦++         ")
 escreval("     +-+     +-+ +-+  +-+ +------+    +-+  +-+ +------+ +-----+          ")
    escreval("**********************************************************************")
-   escreval("*     Olá, Treinador! Bem-vindo ao mundo dos Pokemon!                *")
+   escreval("*     OlÃ¡, Treinador! Bem-vindo ao mundo dos Pokemon!                *")
    escreval("*     Este mundo e habitado por criaturas chamadas Pokemon.          *")
-   escreval("*     Você... O que sera que vai fazer?                              *")
+   escreval("*     VocÃª... O que sera que vai fazer?                              *")
    escreval("**********************************************************************")
    escreval("")
    escreval("            Pressione ENTER para comecar sua jornada...")
@@ -82,7 +87,7 @@ escreval(" .......+#...%..-=.......:+%-..@@%%%%%%%%@%%%%%%%%%%%@+...=%%#:.......
 escreval(" ......#.....%.-@......-@-.....@%%%%%%%%%@%%%%%%%%%%%@=.....-@-..........+-.........:%....")
 escreval("")
 escreval("****************************************************************************************** ")
-escreval("*       Olá! Eu sou o Prof. Carvalho.                                                    * ")
+escreval("*       OlÃ¡! Eu sou o Prof. Carvalho.                                                    * ")
 escreval("*       Este mundo e vasto e cheio de aventuras. Hoje,                                   * ")
 escreval("*       voce vai enfrentar sua primeira batalha Pokemon!                                 * ")
 escreval("*       SEU POKEMON INICIAL SERA O PIKACHU!                                              * ")
@@ -174,11 +179,14 @@ escreval("....-#-:...........-#:............=*#+**+++****+=========++:..........
 
    // BATALHA 1 - PIKACHU vs EEVEE
 
-   nome_inimigo <- "Eevee"
-   nome_jogador <- "Pikachu"
-   hp_inimigo   <- 20
-   hp_jogador   <- 25
-   capturado    <- falso
+   nome_inimigo   <- "Eevee"
+   nome_jogador   <- "Pikachu"
+   hp_inimigo     <- 20
+   hp_jogador     <- 25
+   hp_max_jogador <- 25
+   hp_max_inimigo <- 20
+   pocoes_jogador <- 2
+   capturado      <- falso
 
    escreval("************************************************************")
    escreval("*               BATALHA 1 - ZONA SELVAGEM                  *")
@@ -278,47 +286,108 @@ escreval("########%##############%%%%%##########################################
       escreval("----------------------------------------------------------")
       escreval("  O que ", nome_jogador, " vai fazer?")
       escreval("")
-      escreval("  1 - ATACAR   (Choque do Trovao)")
-      escreval("  2 - CAPTURAR (Jogar Pokebola)")
+      escreval("  1 - CHOQUE DO TROVAO (Ataque RÃ¡pido)")
+      escreval("  2 - INVESTIDA TROVAO (Ataque Forte)")
+      escreval("  3 - USAR POÃ‡ÃƒO (Restantes: ", pocoes_jogador, ")")
+      escreval("  4 - CAPTURAR (Jogar Pokebola)")
       escreval("----------------------------------------------------------")
       leia(opcao)
       limpatela
 
+      // TURNO DO JOGADOR
       escolha opcao
-         caso 1
-            dano <- randi(5) + 2
-            hp_inimigo <- hp_inimigo - dano
-            escreval(">>> ", nome_jogador, " usou CHOQUE DO TROVAO!")
-            escreval("    Causou ", dano, " de dano!")
+      caso 1
+         dano <- randi(5) + 2 // Causa de 5 a 7 de dano
+         hp_inimigo <- hp_inimigo - dano
+         escreval(">>> ", nome_jogador, " usou CHOQUE DO TROVAO!")
+         escreval("    Causou ", dano, " de dano!")
 
-         caso 2
-            escreval(">>> Voce jogou uma Pokebola!")
-            tentativa <- randi(10) + 1
-            se (tentativa > (hp_inimigo / 3)) entao
-               escreval("    Clic!  1...  2...  3...")
-               escreval("    Gotcha! ", nome_inimigo, " foi capturado!")
-               capturado <- verdadeiro
+      caso 2
+         dano <- randi(7) + 5 // Causa de 7 a 12 de dano
+         hp_inimigo <- hp_inimigo - dano
+         escreval(">>> ", nome_jogador, " usou INVESTIDA TROVAO!")
+         escreval("    Foi super efetivo! Causou ", dano, " de dano!")
+
+      caso 3
+         // LÃ³gica da PoÃ§Ã£o do Jogador
+         se (pocoes_jogador > 0) entao
+            se (hp_jogador = hp_max_jogador) entao
+               escreval(">>> O HP de ", nome_jogador, " jÃ¡ estÃ¡ cheio!")
             senao
-               escreval("    Ah nao! ", nome_inimigo, " escapou da Pokebola!")
+               pocoes_jogador <- pocoes_jogador - 1
+               hp_jogador <- hp_jogador + 10
+               // Impede que a vida ultrapasse o limite mÃ¡ximo
+               se (hp_jogador > hp_max_jogador) entao
+                  hp_jogador <- hp_max_jogador
+               fimse
+               escreval(">>> VocÃª usou uma POTION em ", nome_jogador, "!")
+               escreval("    ", nome_jogador, " recuperou 10 de HP!")
             fimse
+         senao
+            escreval(">>> VocÃª nÃ£o tem mais POTIONS restantes! Perdeu a vez!")
+         fimse
 
-         outrocaso
-            escreval(">>> Opcao invalida! Voce perdeu o turno.")
+      caso 4
+         escreval(">>> Voce jogou uma Pokebola!")
+         tentativa <- randi(10) + 1
+         se (tentativa > (hp_inimigo / 3)) entao
+            escreval("    Clic!  1...  2...  3...")
+            escreval("    Gotcha! ", nome_inimigo, " foi capturado!")
+            capturado <- verdadeiro
+         senao
+            escreval("    Ah nao! ", nome_inimigo, " escapou da Pokebola!")
+         fimse
+
+      outrocaso
+         escreval(">>> Opcao invalida! Voce perdeu o turno.")
       fimescolha
 
+      // --- TURNO DO INIMIGO INTELIGENTE (EEVEE) ---
       se (hp_inimigo > 0) e (capturado = falso) entao
          escreval("")
          escreval("----------------------------------------------------------")
-         dano <- randi(4) + 1
-         hp_jogador <- hp_jogador - dano
-         escreval(">>> O ", nome_inimigo, " usou ATAQUE RAPIDO!")
-         escreval("    Causou ", dano, " de dano em ", nome_jogador, "!")
+
+         // Se o Eevee estiver fraco (6 HP ou menos), ele tenta usar cura
+         se (hp_inimigo <= 6) entao
+            acao_inimigo <- randi(10) + 1
+
+            se (acao_inimigo <= 8) entao
+               cura <- randi(4) + 5 // Restaura de 5 a 8 de HP
+               hp_inimigo <- hp_inimigo + cura
+               se (hp_inimigo > hp_max_inimigo) entao
+                  hp_inimigo <- hp_max_inimigo
+               fimse
+               escreval(">>> O ", nome_inimigo, " selvagem usou DESEJO (WISH)!")
+               escreval("    O Eevee recuperou ", cura, " de HP!")
+            senao
+               dano <- randi(3) + 1
+               hp_jogador <- hp_jogador - dano
+               escreval(">>> O ", nome_inimigo, " estÃ¡ acuado! Usou INVESTIDA com desespero!")
+               escreval("    Causou ", dano, " de dano em ", nome_jogador, "!")
+            fimse
+
+         senao
+            // Se a vida estiver normal, sorteia ataques reais aleatoriamente
+            acao_inimigo <- randi(2) + 1
+
+            escolha acao_inimigo
+            caso 1
+               dano <- randi(3) + 2 // Causa entre 2 e 4
+               hp_jogador <- hp_jogador - dano
+               escreval(">>> O ", nome_inimigo, " usou ATAQUE RÃPIDO (QUICK ATTACK)!")
+               escreval("    Ataque prioritÃ¡rio! Causou ", dano, " de dano em ", nome_jogador, "!")
+            caso 2
+               dano <- randi(4) + 4 // Causa entre 4 e 7
+               hp_jogador <- hp_jogador - dano
+               escreval(">>> O ", nome_inimigo, " usou MORDIDA (BITE)!")
+               escreval("    Golpe feroz! Causou ", dano, " de dano em ", nome_jogador, "!")
+            fimescolha
+         fimse
          escreval("----------------------------------------------------------")
       fimse
 
    fimenquanto
 
-   /
    // RESULTADO DA BATALHA 1
 
    escreval("")
@@ -621,10 +690,13 @@ escreval("                              mmmmmmmmmmmmmmmmmm                      
 
          // BATALHA 2 - VAPOREON vs GROWLITHE
 
-         nome_inimigo <- "Charizard"
-         nome_jogador <- "Vaporeon"
-         hp_inimigo   <- 30
-         hp_jogador   <- 35
+         nome_inimigo   <- "Charizard"
+         nome_jogador   <- "Vaporeon"
+         hp_inimigo     <- 30
+         hp_jogador     <- 35
+         hp_max_jogador <- 35
+         hp_max_inimigo <- 30
+         pocoes_jogador <- 2
          capturado    <- falso
 
          escreval("************************************************************")
@@ -719,41 +791,103 @@ escreval("*****#################%%#*########%%%#%##################*************
             escreval("----------------------------------------------------------")
             escreval("  O que ", nome_jogador, " vai fazer?")
             escreval("")
-            escreval("  1 - ATACAR   (Jato de Agua)")
-            escreval("  2 - CAPTURAR (Jogar Pokebola)")
+            escreval("  1 - JATO DE AGUA (Ataque RÃ¡pido)")
+            escreval("  2 - SURF (Ataque Forte)")
+            escreval("  3 - USAR POÃ‡ÃƒO (Restantes: ", pocoes_jogador, ")")
+            escreval("  4 - CAPTURAR (Jogar Pokebola)")
             escreval("----------------------------------------------------------")
             leia(opcao)
             limpatela
 
+            // TURNO DO JOGADOR
             escolha opcao
-               caso 1
-                  dano <- randi(7) + 3
-                  hp_inimigo <- hp_inimigo - dano
-                  escreval(">>> ", nome_jogador, " usou JATO DE AGUA!")
-                  escreval("    E muito eficaz! Causou ", dano, " de dano!")
+            caso 1
+               dano <- randi(7) + 3 // Causa de 3 a 10 de dano
+               hp_inimigo <- hp_inimigo - dano
+               escreval(">>> ", nome_jogador, " usou JATO DE AGUA!")
+               escreval("    E muito eficaz! Causou ", dano, " de dano!")
 
-               caso 2
-                  escreval(">>> Voce jogou uma Pokebola!")
-                  tentativa <- randi(10) + 1
-                  se (tentativa > (hp_inimigo / 3)) entao
-                     escreval("    Clic!  1...  2...  3...")
-                     escreval("    Gotcha! ", nome_inimigo, " foi capturado!")
-                     capturado <- verdadeiro
+            caso 2
+               dano <- randi(9) + 6 // Causa de 6 a 15 de dano
+               hp_inimigo <- hp_inimigo - dano
+               escreval(">>> ", nome_jogador, " usou SURF!")
+               escreval("    Golpe devastador! Causou ", dano, " de dano!")
+
+            caso 3
+               // LÃ³gica da PoÃ§Ã£o do Jogador
+               se (pocoes_jogador > 0) entao
+                  se (hp_jogador = hp_max_jogador) entao
+                     escreval(">>> O HP de ", nome_jogador, " jÃ¡ estÃ¡ cheio!")
                   senao
-                     escreval("    Ah nao! ", nome_inimigo, " escapou da Pokebola!")
+                     pocoes_jogador <- pocoes_jogador - 1
+                     hp_jogador <- hp_jogador + 10
+                     // Impede que a vida ultrapasse o limite mÃ¡ximo
+                     se (hp_jogador > hp_max_jogador) entao
+                        hp_jogador <- hp_max_jogador
+                     fimse
+                     escreval(">>> VocÃª usou uma POTION em ", nome_jogador, "!")
+                     escreval("    ", nome_jogador, " recuperou 10 de HP!")
                   fimse
+               senao
+                  escreval(">>> VocÃª nÃ£o tem mais POTIONS restantes! Perdeu a vez!")
+               fimse
 
-               outrocaso
-                  escreval(">>> Opcao invalida! Voce perdeu o turno.")
+            caso 4
+               escreval(">>> Voce jogou uma Pokebola!")
+               tentativa <- randi(10) + 1
+               se (tentativa > (hp_inimigo / 3)) entao
+                  escreval("    Clic!  1...  2...  3...")
+                  escreval("    Gotcha! ", nome_inimigo, " foi capturado!")
+                  capturado <- verdadeiro
+               senao
+                  escreval("    Ah nao! ", nome_inimigo, " escapou da Pokebola!")
+               fimse
+
+            outrocaso
+               escreval(">>> Opcao invalida! Voce perdeu o turno.")
             fimescolha
 
+            // --- TURNO DO INIMIGO INTELIGENTE (CHARIZARD) ---
             se (hp_inimigo > 0) e (capturado = falso) entao
                escreval("")
                escreval("----------------------------------------------------------")
-               dano <- randi(5) + 2
-               hp_jogador <- hp_jogador - dano
-               escreval(">>> O ", nome_inimigo, " usou LANCA-CHAMAS!")
-               escreval("    Causou ", dano, " de dano em ", nome_jogador, "!")
+
+               // Se o Charizard estiver fraco (8 HP ou menos), ele tenta se curar
+               se (hp_inimigo <= 8) entao
+                  acao_inimigo <- randi(10) + 1
+
+                  se (acao_inimigo <= 7) entao
+                     cura <- randi(5) + 4 // Restaura de 4 a 9 de HP
+                     hp_inimigo <- hp_inimigo + cura
+                     se (hp_inimigo > hp_max_inimigo) entao
+                        hp_inimigo <- hp_max_inimigo
+                     fimse
+                     escreval(">>> O ", nome_inimigo, " usou DESCANSO (REST)!")
+                     escreval("    O Charizard recuperou ", cura, " de HP!")
+                  senao
+                     dano <- randi(4) + 2
+                     hp_jogador <- hp_jogador - dano
+                     escreval(">>> O ", nome_inimigo, " estÃ¡ furioso! Usou LANÃ‡A-CHAMAS desesperado!")
+                     escreval("    Causou ", dano, " de dano em ", nome_jogador, "!")
+                  fimse
+
+               senao
+                  // Se a vida estiver normal, sorteia ataques reais aleatoriamente
+                  acao_inimigo <- randi(2) + 1
+
+                  escolha acao_inimigo
+                  caso 1
+                     dano <- randi(5) + 2 // Causa entre 2 e 7
+                     hp_jogador <- hp_jogador - dano
+                     escreval(">>> O ", nome_inimigo, " usou LANÃ‡A-CHAMAS!")
+                     escreval("    Chamas ardentes! Causou ", dano, " de dano em ", nome_jogador, "!")
+                  caso 2
+                     dano <- randi(6) + 5 // Causa entre 5 e 11
+                     hp_jogador <- hp_jogador - dano
+                     escreval(">>> O ", nome_inimigo, " usou EXPLOSÃƒO DE FOGO!")
+                     escreval("    Golpe poderoso! Causou ", dano, " de dano em ", nome_jogador, "!")
+                  fimescolha
+               fimse
                escreval("----------------------------------------------------------")
             fimse
 
@@ -766,6 +900,7 @@ escreval("*****#################%%#*########%%%#%##################*************
          escreval("************************************************************")
          escreval("*                  FIM DE BATALHA 2!                       *")
          escreval("************************************************************")
+
          escreval("")
 
          se (capturado = verdadeiro) entao
