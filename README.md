@@ -1,29 +1,30 @@
-Pokemon Battle
-Projeto da disciplina ALGORITMOS E ESTRUTURAS DE DADOS.
+# Pokemon Battle
 
-Professor: Dr. MAXWELL GOMES DA SILVA
+Projeto da disciplina **ALGORITMOS E ESTRUTURAS DE DADOS**.
+
+Professor: **[Nome do Professor]**
 
 Integrantes:
 
-Otavio Mendes Nunes - RA: 5181461
-Gabriel Ricardo S. Martins - RA: 5179502
-Flávio Henrique S. Faria - RA: 5182898
+- Otavio Mendes - RA: 5181461
 
-Entrega principal
+## Entrega principal
+
 A entrega principal do trabalho está em:
 
-Plaintext
+```text
 POKEMON_BATTLE/Batalha definitiva.ALG
 Esse arquivo deve ser aberto no VisuALG 3 e executado com F9.
 
 Estrutura do repositório
-Plaintext
+
 POKEMON_TRABALHO_FACULDADE/
 |
 |-- README.md
 |
 |-- POKEMON_BATTLE/
 |   |-- Batalha definitiva.ALG
+
 Como executar a versão oficial
 Abra o VisuALG 3.
 
@@ -46,11 +47,11 @@ O núcleo do jogo funciona através de uma estrutura condicional repetitiva (enq
 
 Turno do Jogador: Apresenta um menu de escolha numérica com as seguintes opções:
 
-Plaintext
 1 - CHOQUE DO TROVAO (Ataque Rápido)
 2 - INVESTIDA TROVAO (Ataque Forte)
 3 - USAR POÇÃO (Restaurar 10 HP)
 4 - CAPTURAR (Jogar Pokebola)
+
 Inteligência Artificial (Inimigo Inteligente): O oponente (Eevee) age baseado no seu nível de vida atual:
 
 Se estiver com vida cheia/normal, ele alterna aleatoriamente entre ataques normais e ferozes (ATAQUE RÁPIDO ou MORDIDA).
