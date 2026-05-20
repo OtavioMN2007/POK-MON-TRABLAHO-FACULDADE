@@ -15,7 +15,7 @@ Integrantes:
 A entrega principal do trabalho esta em:
 
 ```text
-Batalha_definitiva.ALG
+BATTLE FIRE.ALG
 ```
 
 Esse arquivo deve ser aberto no **VisuALG 3** e executado com **F9**.
@@ -23,7 +23,7 @@ Esse arquivo deve ser aberto no **VisuALG 3** e executado com **F9**.
 ## Como executar
 
 1. Abra o VisuALG 3.
-2. Abra o arquivo `Batalha_definitiva.ALG`.
+2. Abra o arquivo `BATTLE FIRE.ALG`.
 3. Pressione F9.
 4. Pressione ENTER na tela de boas-vindas para comecar sua jornada.
 
