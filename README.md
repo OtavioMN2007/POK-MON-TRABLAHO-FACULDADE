@@ -6,7 +6,7 @@ Professor: Dr. Maxwell Gomes Da Silva
 
 Integrantes:
 
-- Otávio Mendes Nunes - RA: 5178278
+- Otávio Mendes Nunes - RA: 5181461
 - Gabriel Ricardo Santos Marttins - RA: 5179502
 - Flávio Henrique Silva Faria - RA: 5182898
 
